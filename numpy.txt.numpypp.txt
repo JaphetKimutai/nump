@@ -1,0 +1,180 @@
+b)i.
+def numerical_derivative(f, x, h=1e-5):
+ """
+ Computes the numerical derivative of a function f at point x.
+
+ Args:
+   f: The function to differentiate.
+   x: The point at which to compute the derivative.
+   h: Step size for the numerical differentiation.
+
+ Returns:
+   The approximate derivative of f at x.
+ """
+ return (f(x + h) - f(x - h)) / (2 * h)
+
+# Example usage
+def f(x):
+ return x**2
+
+x = 2
+derivative = numerical_derivative(f, x)
+print("Derivative of f(x) at x=2:", derivative)
+ ii.
+
+def numerical_integration(f, a, b, n=100):
+ """
+ Computes the numerical integral of a function f over the interval [a, b].
+
+ Args:
+   f: The function to integrate.
+   a: The lower limit of integration.
+   b: The upper limit of integration.
+   n: The number of subintervals for the approximation.
+
+ Returns:
+   The approximate integral of f over [a, b].
+ """
+ x = np.linspace(a, b, n+1)
+ y = f(x)
+ dx = (b - a) / n
+ return np.sum(y) * dx
+
+# Example usage
+def f(x):
+ return np.sin(x)
+
+a, b = 0, np.pi
+integral = numerical_integration(f, a, b)
+print("Integral of sin(x) from 0 to pi:", integral)
+
+iii.
+ 
+def numerical_integration(f, a, b, n=100):
+ """
+ Computes the numerical integral of a function f over the interval [a, b].
+
+ Args:
+   f: The function to integrate.
+   a: The lower limit of integration.
+   b: The upper limit of integration.
+   n: The number of subintervals for the approximation.
+
+ Returns:
+   The approximate integral of f over [a, b].
+ """
+ x = np.linspace(a, b, n+1)
+ y = f(x)
+ dx = (b - a) / n
+ return np.sum(y) * dx
+
+# Example usage
+def f(x):
+ return np.sin(x)
+
+a, b = 0, np.pi
+integral = numerical_integration(f, a, b)
+print("Integral of sin(x) from 0 to pi:", integral)
+
+iv.
+
+def curve_fitting(x, y, degree):
+ """
+ Fits a polynomial curve to the given data points.
+
+ Args:
+   x: The x-coordinates of the data points.
+   y: The y-coordinates of the data points.
+   degree: The degree of the polynomial to fit.
+
+ Returns:
+   The coefficients of the fitted polynomial.
+ """
+ coefficients = np.polyfit(x, y, degree)
+ return coefficients
+
+# Example usage
+x = np.linspace(0, 10, 20)
+y = 2 * x + 3 + np.random.randn(20)
+coefficients = curve_fitting(x, y, 1)  # Fit a linear curve
+print("Fitted coefficients:", coefficients)
+
+v.def linear_regression(x, y):
+ """
+ Performs linear regression on the given data.
+
+ Args:
+   x: The independent variable.
+   y: The dependent variable.
+
+ Returns:
+   The slope and intercept of the regression line.
+ """
+ slope, intercept, _, _, _ = stats.linregress(x, y)
+ return slope, intercept
+
+# Example usage
+x = np.array([1, 2, 3, 4, 5])
+y = np.array([2, 4, 5, 4, 5])
+slope, intercept = linear_regression(x, y)
+print("Slope:", slope)
+print("Intercept:", intercept)
+v. Spline Interpolation
+Spline interpolation fits smooth curves to data points using piecewise polynomials.
+def spline_interpolation(x, y, new_x):
+ """
+ Performs spline interpolation on the given data.
+
+ Args:
+   x: The x-coordinates of the data points.
+   y: The y-coordinates of the data points.
+   new_x: The new x-values for interpolation.
+
+ Returns:
+   The interpolated y-values.
+ """
+ f = interpolate.interp1d(x, y, kind='cubic')
+ new_y = f(new_x)
+ return new_y
+
+# Example usage
+x = np.linspace(0, 10, 10)
+y = np.sin(x)
+new_x = np.linspace(0, 10, 50)
+new_y = spline_interpolation(x, y, new_x)
+
+g)
+import numpy as np
+
+def trapezoidal_rule(f, a, b, n):
+  """
+  Approximates the definite integral of a function using the trapezoidal rule.
+
+  Args:
+    f: The function to integrate.
+    a: The lower limit of integration.
+    b: The upper limit of integration.
+    n: The number of subintervals.
+
+  Returns:
+    The approximate value of the integral.
+  """
+
+  h = (b - a) / n  # Width of each subinterval
+  x = np.linspace(a, b, n + 1)  # Equally spaced points
+  y = f(x)
+
+  integral = h * (y[0] + y[-1] + 2 * np.sum(y[1:-1])) / 2
+
+  return integral
+
+# Example usage
+def f(x):
+  return x**2
+
+a = 0
+b = 2
+n = 10
+
+result = trapezoidal_rule(f, a, b, n)
+print("Approximate integral:", result)
